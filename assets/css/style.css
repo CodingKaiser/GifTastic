@@ -1,0 +1,13 @@
+.gif-button {
+	margin: 10px 5px 10px 5px;
+}
+
+#gif-container {
+	width: 70%;
+	float: left;
+}
+
+#add-button-container {
+	width: 30%;
+	float: right;
+}
