@@ -22,11 +22,18 @@ $(document).ready(function() {
 			url: "http://api.giphy.com/v1/gifs/search?q=" + searchTerm +"&api_key=dc6zaTOxFJmzC",
 			method: "GET",
 		}).done(function(response) {
-			for (var i = 0; i < response.data.length; i++) {
-				$("#gif-container").append("<img src='" + response.data[i].images.downsized.url + "' style='height:200px; margin: 10px 10px 10px 10px'>");
-			}
-			console.log(response.data[0].images.downsized.url);
+			constructGifContainer(response);
 		});
+	};
+
+	function constructGifContainer(response) {
+		for (var i = 0; i < response.data.length; i++) {
+			var gifMoving = response.data[i].images.downsized.url;
+			var gifRating = response.data[i];
+			$("#gif-area").append("<div class='thumbnail gif-container'><div class='caption'><p>" +  + "</p></div><img style='height:200px;' src='" + gifMoving + "'></div>")
+			//$("#gif-area").append("<img src='" + response.data[i].images.downsized.url + "' style='height:200px; margin: 10px 10px 10px 10px'>");
+		}
+		console.log(response.data[0].images.downsized.url);
 	};
 
 	$("#add-gif-button").on("click", function() {
