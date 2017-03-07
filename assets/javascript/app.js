@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var buttonLabels = ['mice', 'cats', 'dogs', 'geese', 'horses', 'armadillo', 'dumb dog'];
+	var buttonLabels = ['game of thrones', 'hacker', 'mark zuckerberg', 'donald trump', 'horsey', 'dumb lion', 'dumb dog'];
 	var allowedRatings = ['g', 'pg'];
 
 	function start() {
@@ -37,7 +37,7 @@ $(document).ready(function() {
 				var newGifContainer = $("<div class='thumbnail gif-container'></div>");
 				newGifContainer.attr("data-gif-still", gifStill);
 				newGifContainer.attr("data-gif-moving", gifMoving);
-				newGifContainer.append("<div class='caption'><p>Rating: " + gifRating + "</p></div>");
+				newGifContainer.append("<div class='caption'><p class='gif-rating'>Rating: " + gifRating + "</p></div>");
 				newGifContainer.append("<img class='gif-img' src='" + gifStill + "'>");
 				newGifContainer.on("click", startPlayingGif);
 				$("#gif-area").append(newGifContainer);

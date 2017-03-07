@@ -2,13 +2,6 @@ h1, h2, h3, h4, h5, h6, p, input, button {
 	font-family: 'VT323', monospace;
 }
 
-input, button {
-	font-size: 100px;
-}
-
-#button-container {
-}
-
 #add-gif-form {
 	clear: both;
 }
@@ -28,10 +21,6 @@ input, button {
 	margin: 5px;
 }
 
-img.gif-img {
-	height: 200px;
-}
-
 .area-header {
 	margin: 10px 0px 0px 5px;
 	float: left;
@@ -41,6 +30,14 @@ img.gif-img {
 .gif-button {
 	margin: 5px 5px 5px 5px;
 	font-size: 1.5em;
+}
+
+img.gif-img {
+	height: 200px;
+}
+
+p.gif-rating {
+	font-size: 1.25em;
 }
 
 @media only screen and (max-width: 874px) {
