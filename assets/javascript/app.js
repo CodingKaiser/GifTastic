@@ -4,16 +4,26 @@ $(document).ready(function() {
 
 	function start() {
 		for (var i = 0; i < buttonLabels.length; i++) {
-			makeNewButton(buttonLabels[i]);
+			makeNewButton(buttonLabels[i], true);
 		};
 	};
 
-	function makeNewButton(term) {
+	function makeNewButton(term, isPrespecified) {
 		var newButton = $("<button></button>");
 		newButton.attr("data-search-term", term)
 		newButton.addClass("btn btn-default gif-button");
-		newButton.text(term);
 		$("#button-container").append(newButton);
+		if (isPrespecified) {
+			newButton.text(term);
+		} else {
+			newButton.typeIt({
+				strings: term,
+				lifeLike: false,
+				delay: 0,
+				speed: 10,
+				cursor: false,
+			});
+		}
 		newButton.on("click", getGifs);
 	};
 
@@ -77,7 +87,7 @@ $(document).ready(function() {
 		event.preventDefault();
 		if (inputBoxHasContent()) {
 			var newSearchTerm = $("#search-term").val();
-			makeNewButton(newSearchTerm);
+			makeNewButton(newSearchTerm, false);
 			clearInputBox();
 		}
 	});
