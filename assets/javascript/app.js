@@ -38,7 +38,7 @@ $(document).ready(function() {
 				newGifContainer.attr("data-gif-still", gifStill);
 				newGifContainer.attr("data-gif-moving", gifMoving);
 				newGifContainer.append("<div class='caption'><p>Rating: " + gifRating + "</p></div>");
-				newGifContainer.append("<img style='height:200px;' src='" + gifStill + "'>");
+				newGifContainer.append("<img class='gif-img' src='" + gifStill + "'>");
 				newGifContainer.on("click", startPlayingGif);
 				$("#gif-area").append(newGifContainer);
 			}
@@ -58,11 +58,29 @@ $(document).ready(function() {
 		currentImage.on("click", startPlayingGif);
 	}
 
-	$("#add-gif-button").on("click", function() {
-		var newSearchTerm = $("#search-term").val();
-		makeNewButton(newSearchTerm);
-	});
+	function clearInputBox() {
+		$("#search-term").val("");
+	};
 
+	function inputBoxHasContent() {
+		return $("#search-term").val();
+	};
+
+	// $("#search-term").keypress(function(event) {
+	// 	if (event.which === 13 && inputBoxHasContent()) {
+	// 		makeNewButton($(this).val());
+	// 		clearInputBox();
+	// 	}
+	// });
+
+	$("#add-gif-button").on("click", function(event) {
+		event.preventDefault();
+		if (inputBoxHasContent()) {
+			var newSearchTerm = $("#search-term").val();
+			makeNewButton(newSearchTerm);
+			clearInputBox();
+		}
+	});
 
 	start();
 });

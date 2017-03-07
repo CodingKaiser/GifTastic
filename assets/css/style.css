@@ -1,8 +1,16 @@
-.gif-button {
-	margin: 5px 5px 5px 5px;
+h1, h2, h3, h4, h5, h6, p, input, button {
+	font-family: 'VT323', monospace;
+}
+
+input, button {
+	font-size: 100px;
 }
 
 #button-container {
+}
+
+#add-gif-form {
+	clear: both;
 }
 
 #gif-area {
@@ -18,4 +26,42 @@
 .gif-container {
 	display: inline-block;
 	margin: 5px;
+}
+
+img.gif-img {
+	height: 200px;
+}
+
+.area-header {
+	margin: 10px 0px 0px 5px;
+	float: left;
+	clear: both;
+}
+
+.gif-button {
+	margin: 5px 5px 5px 5px;
+	font-size: 1.5em;
+}
+
+@media only screen and (max-width: 874px) {
+	#gif-area {
+		padding: 5px 5px 5px 5px;
+		width: 100%;
+		float: none;
+		clear: both;
+	}
+
+	#add-button-container {
+		padding: 5px 5px 5px 5px;
+		width: 100%;
+		float: none;
+		clear: both;
+	}
+}
+
+@media only screen and (max-width: 460px) {
+	img.gif-img {
+		width: 100vw;
+		height: initial;
+	}
 }
