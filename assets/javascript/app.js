@@ -14,8 +14,10 @@ $(document).ready(function() {
 		newButton.addClass("btn btn-default gif-button");
 		$("#button-container").append(newButton);
 		if (isPrespecified) {
+			// Simply display text
 			newButton.text(term);
 		} else {
+			// animate the appearance of text in button
 			newButton.typeIt({
 				strings: term,
 				lifeLike: false,
@@ -57,12 +59,14 @@ $(document).ready(function() {
 	};
 
 	function startPlayingGif() {
+		// switch gif src and set onClick to stop playing GIF
 		var currentImage = $(this);
 		currentImage.children("img").attr("src", $(this).attr("data-gif-moving"));
 		currentImage.on("click", stopPlayingGif);
 	};
 
 	function stopPlayingGif() {
+		// switch gif src and set onClick to start playing GIF
 		var currentImage = $(this);
 		currentImage.children("img").attr("src", $(this).attr("data-gif-still"));
 		currentImage.on("click", startPlayingGif);
@@ -76,16 +80,10 @@ $(document).ready(function() {
 		return $("#search-term").val();
 	};
 
-	// $("#search-term").keypress(function(event) {
-	// 	if (event.which === 13 && inputBoxHasContent()) {
-	// 		makeNewButton($(this).val());
-	// 		clearInputBox();
-	// 	}
-	// });
-
 	$("#add-gif-button").on("click", function(event) {
-		event.preventDefault();
+		event.preventDefault(); // prevent reloading of page by input
 		if (inputBoxHasContent()) {
+			// make a new button and append it to existing buttons
 			var newSearchTerm = $("#search-term").val();
 			makeNewButton(newSearchTerm, false);
 			clearInputBox();
