@@ -58,7 +58,9 @@ $(document).ready(function() {
 					$("#gif-area").append(newGifContainer);
 				}
 			}
-			console.log(response.data[0].images.downsized.url);
+			if (response.data.length === 0) {
+				$("#gif-area").append("<h2>No GIFs found!</h2>");
+			}
 		},
 	};
 
