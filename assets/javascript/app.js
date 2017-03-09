@@ -6,11 +6,11 @@ $(document).ready(function() {
 
 		start: function() {
 			for (var i = 0; i < this.buttonLabels.length; i++) {
-				this._makeNewButton(this.buttonLabels[i], true);
+				this.makeNewButton(this.buttonLabels[i], true);
 			};
 		},
 
-		_makeNewButton: function(term, isPrespecified) {
+		makeNewButton: function(term, isPrespecified) {
 			var newButton = $("<button></button>");
 			newButton.attr("data-search-term", term)
 			newButton.addClass("btn btn-default gif-button");
@@ -66,6 +66,7 @@ $(document).ready(function() {
 		// switch gif src and set onClick to stop playing GIF
 		var currentImage = $(this);
 		currentImage.children("img").attr("src", $(this).attr("data-gif-moving"));
+		currentImage.css("background", "beige");
 		currentImage.on("click", stopPlayingGif);
 	};
 
@@ -73,6 +74,7 @@ $(document).ready(function() {
 		// switch gif src and set onClick to start playing GIF
 		var currentImage = $(this);
 		currentImage.children("img").attr("src", $(this).attr("data-gif-still"));
+		currentImage.css("background", "white");
 		currentImage.on("click", startPlayingGif);
 	}
 
