@@ -34,7 +34,7 @@ $(document).ready(function() {
 		_getGifs: function() {
 			var searchTerm = $(this).attr("data-search-term");
 			$.ajax({
-				url: "http://api.giphy.com/v1/gifs/search?q=" + searchTerm +"&limit=30&rating&api_key=dc6zaTOxFJmzC",
+				url: "https://api.giphy.com/v1/gifs/search?q=" + searchTerm +"&limit=30&rating&api_key=dc6zaTOxFJmzC",
 				method: "GET",
 			}).done(function(response) {
 				gifApp._constructGifContainer(response);
@@ -51,7 +51,8 @@ $(document).ready(function() {
 					var newGifContainer = $("<div class='thumbnail gif-container'></div>");
 					newGifContainer.attr("data-gif-still", gifStill);
 					newGifContainer.attr("data-gif-moving", gifMoving);
-					newGifContainer.append("<div class='caption'><p class='gif-rating'>Rating: " + gifRating + "</p></div>");
+					newGifContainer.append("<div class='caption'><p class='gif-rating'>Rating: " + 
+											gifRating + "</p></div>");
 					newGifContainer.append("<img class='gif-img' src='" + gifStill + "'>");
 					newGifContainer.on("click", startPlayingGif);
 					$("#gif-area").append(newGifContainer);
