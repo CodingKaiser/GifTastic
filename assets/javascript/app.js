@@ -1,13 +1,30 @@
 $(document).ready(function() {
 
 	var gifApp = {
-		buttonLabels: ['game of thrones', 'hacker', 'mark zuckerberg', 'donald trump', 'horsey', 'dumb lion', 'dumb dog'],
+		baseButtonLabels: ['game of thrones', 'hacker', 'mark zuckerberg', 
+						'donald trump', 'horsey', 'dumb lion', 'dumb dog'],
+		buttonLabels: ['game of thrones', 'hacker', 'mark zuckerberg', 
+						'donald trump', 'horsey', 'dumb lion', 'dumb dog'],
 		allowedRatings: ['g', 'pg'],
 
 		start: function() {
+			$("#button-container").children("button").remove();
+			this._loadUserGifButtonList();
 			for (var i = 0; i < this.buttonLabels.length; i++) {
 				this.makeNewButton(this.buttonLabels[i], true);
 			};
+		},
+
+		_loadUserGifButtonList: function() {
+			var existingButtons = localStorage.getItem("existingLabels");
+			console.log(existingButtons);
+			if (!existingButtons) {
+				localStorage.setItem("existingLabels", 
+					JSON.stringify(this.baseButtonLabels));
+				this.buttonLabels = this.baseButtonLabels;
+			} else {
+				this.buttonLabels = JSON.parse(existingButtons);
+			}
 		},
 
 		makeNewButton: function(term, isPrespecified) {
@@ -34,7 +51,8 @@ $(document).ready(function() {
 		_getGifs: function() {
 			var searchTerm = $(this).attr("data-search-term");
 			$.ajax({
-				url: "https://api.giphy.com/v1/gifs/search?q=" + searchTerm +"&limit=30&rating&api_key=dc6zaTOxFJmzC",
+				url: "https://api.giphy.com/v1/gifs/search?q=" + 
+						searchTerm +"&limit=30&rating&api_key=dc6zaTOxFJmzC",
 				method: "GET",
 			}).done(function(response) {
 				gifApp._constructGifContainer(response);
@@ -93,10 +111,20 @@ $(document).ready(function() {
 		if (inputBoxHasContent()) {
 			// make a new button and append it to existing buttons
 			var newSearchTerm = $("#search-term").val();
+			gifApp.buttonLabels.push(newSearchTerm);
+			localStorage.setItem("existingLabels", 
+				JSON.stringify(gifApp.buttonLabels));
 			gifApp.makeNewButton(newSearchTerm, false);
 			clearInputBox();
 		}
 	});
+
+	$("#reset-gif-buttons").on("click", function(event) {
+		gifApp.buttonLabels = gifApp.baseButtonLabels;
+		localStorage.setItem("existingLabels", 
+			JSON.stringify(gifApp.buttonLabels));
+		gifApp.start();
+	})
 
 	gifApp.start();
 });
