@@ -17,12 +17,14 @@ $(document).ready(function() {
 
 		_loadUserGifButtonList: function() {
 			var existingButtons = localStorage.getItem("existingLabels");
-			console.log(existingButtons);
+			// check if the user has used this website before and has buttons stored
 			if (!existingButtons) {
+				// use base buttons
 				localStorage.setItem("existingLabels", 
 					JSON.stringify(this.baseButtonLabels));
 				this.buttonLabels = this.baseButtonLabels;
 			} else {
+				// Use user-saved buttons
 				this.buttonLabels = JSON.parse(existingButtons);
 			}
 		},
@@ -111,15 +113,16 @@ $(document).ready(function() {
 		if (inputBoxHasContent()) {
 			// make a new button and append it to existing buttons
 			var newSearchTerm = $("#search-term").val();
-			gifApp.buttonLabels.push(newSearchTerm);
+			gifApp.buttonLabels.push(newSearchTerm); // update button history
 			localStorage.setItem("existingLabels", 
-				JSON.stringify(gifApp.buttonLabels));
+				JSON.stringify(gifApp.buttonLabels)); // update local storage
 			gifApp.makeNewButton(newSearchTerm, false);
 			clearInputBox();
 		}
 	});
 
 	$("#reset-gif-buttons").on("click", function(event) {
+		// resets the button history for user
 		gifApp.buttonLabels = gifApp.baseButtonLabels;
 		localStorage.setItem("existingLabels", 
 			JSON.stringify(gifApp.buttonLabels));
